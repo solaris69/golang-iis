@@ -4,14 +4,14 @@ import (
 	"fmt"
 )
 
-func (c *WebsitesClient) Create(name string, applicationPool string, physicalPath string) error {
+func (c *WebsitesClient) Create(name string, applicationPool string, physicalPath string, port integer) error {
 	// we normalize the path via PS as otherwise AppSettings/AuthMode fails
 	// when combining `C:\\inetpub\\site\web.config` (also fails on C:/inetpub/site\web.config`)
 	commands := fmt.Sprintf(`
 Import-Module WebAdministration
 $path = [IO.Path]::GetFullPath(%q)
-New-Website -Name %q -ApplicationPool %q -PhysicalPath $path
-  `, physicalPath, name, applicationPool)
+New-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %q
+  `, physicalPath, name, applicationPool, port)
 
 	_, stderr, err := c.Run(commands)
 	if err != nil {
