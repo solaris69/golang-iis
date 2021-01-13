@@ -1,7 +1,7 @@
 package websites
 
 import (
-	"github.com/tombuildsstuff/golang-iis/iis/cmd"
+	"github.com/solaris69/golang-iis/iis/cmd"
 )
 
 type WebsitesClient struct {
