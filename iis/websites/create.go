@@ -2,7 +2,7 @@ package websites
 
 import (
 	"fmt"
-	"log"
+	// "log"
 )
 
 func (c *WebsitesClient) Create(name string, applicationPool string, physicalPath string, port int, domainName string) error {
