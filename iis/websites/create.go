@@ -14,14 +14,13 @@ $path = [IO.Path]::GetFullPath(%q)
 New-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %d -HostHeader %q
   `, physicalPath, name, applicationPool, port, domainName)
 
-	log.Printf("$path = GetPath(%q)\nNew-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %d -HostHeader %q", physicalPath, name, applicationPool, port, domainName)
 	_, stderr, err := c.Run(commands)
 	if err != nil {
-		return fmt.Errorf("Error1 creating Website: %+v", err)
+		return fmt.Errorf("Error#1 creating Website: %+v", err)
 	}
 
 	if stderr != nil && *stderr != "" {
-		return fmt.Errorf("Error2 creating Website %q: %+v", name, err)
+		return fmt.Errorf("Error#2 creating Website %q: %+v", name, err)
 	}
 
 	return nil
