@@ -11,7 +11,7 @@ func (c *WebsitesClient) Create(name string, applicationPool string, physicalPat
 Import-Module WebAdministration
 $path = [IO.Path]::GetFullPath(%q)
 New-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %q -HostHeader %q
-  `, physicalPath, name, applicationPool, port, domainName)
+  `, name, applicationPool, physicalPath, port, domainName)
 
 	_, stderr, err := c.Run(commands)
 	if err != nil {
