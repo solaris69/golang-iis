@@ -11,10 +11,10 @@ func (c *WebsitesClient) Create(name string, applicationPool string, physicalPat
 	commands := fmt.Sprintf(`
 Import-Module WebAdministration
 $path = [IO.Path]::GetFullPath(%q)
-New-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %q -HostHeader %q
+New-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %d -HostHeader %q
   `, physicalPath, name, applicationPool, port, domainName)
 
-	log.Printf("$path = GetPath(%q)\nNew-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %q -HostHeader %q", physicalPath, name, applicationPool, port, domainName)
+	log.Printf("$path = GetPath(%q)\nNew-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %d -HostHeader %q", physicalPath, name, applicationPool, port, domainName)
 	_, stderr, err := c.Run(commands)
 	if err != nil {
 		return fmt.Errorf("Error1 creating Website: %+v", err)
