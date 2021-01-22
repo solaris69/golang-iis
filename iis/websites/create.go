@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (c *WebsitesClient) Create(name string, applicationPool string, physicalPath string, port int32, domainName string) error {
+func (c *WebsitesClient) Create(name string, applicationPool string, physicalPath string, port int, domainName string) error {
 	// we normalize the path via PS as otherwise AppSettings/AuthMode fails
 	// when combining `C:\\inetpub\\site\web.config` (also fails on C:/inetpub/site\web.config`)
 	commands := fmt.Sprintf(`
