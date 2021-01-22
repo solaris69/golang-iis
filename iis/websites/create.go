@@ -2,6 +2,7 @@ package websites
 
 import (
 	"fmt"
+	"log"
 )
 
 func (c *WebsitesClient) Create(name string, applicationPool string, physicalPath string, port int, domainName string) error {
@@ -11,8 +12,9 @@ func (c *WebsitesClient) Create(name string, applicationPool string, physicalPat
 Import-Module WebAdministration
 $path = [IO.Path]::GetFullPath(%q)
 New-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %q -HostHeader %q
-  `, name, applicationPool, physicalPath, port, domainName)
+  `, physicalPath, name, applicationPool, port, domainName)
 
+	log.Printf("$path = GetPath(%q)\nNew-Website -Name %q -ApplicationPool %q -PhysicalPath $path -Port %q -HostHeader %q", physicalPath, name, applicationPool, port, domainName)
 	_, stderr, err := c.Run(commands)
 	if err != nil {
 		return fmt.Errorf("Error1 creating Website: %+v", err)
