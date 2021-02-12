@@ -41,7 +41,8 @@ Get-ItemProperty "IIS:\Sites\%s" -name logFile | ConvertTo-Json -Compress
 func (c *WebsitesClient) SetLogDirectory(name string, physicalPath string) error {
 	commands := fmt.Sprintf(`
 Import-Module WebAdministration
-$tmpPath= "%q" -replace [regex]::Escape("\\"),'\'
+$tmpPath= %q -replace [regex]::Escape("\\"),'\'
+write-host $tmpPath
 Set-ItemProperty "IIS:\Sites\%s" -name logFile -value @{directory=$tmpPath}
   `, physicalPath, name)
 
