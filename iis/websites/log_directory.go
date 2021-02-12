@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"log"
 
 	"github.com/tombuildsstuff/golang-iis/iis/helpers"
 )
