@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
-	"log"
+	// "log"
 
 	"github.com/tombuildsstuff/golang-iis/iis/helpers"
 )
@@ -46,7 +46,7 @@ write-host $tmpPath
 Set-ItemProperty "IIS:\Sites\%s" -name logFile -value @{directory=$tmpPath}
   `, physicalPath, name)
 
-	log.Printf("DEBUG: %s",commands)
+	// log.Printf("DEBUG: %s",commands)
 	_, stderr, err := c.Run(commands)
 	if err != nil {
 		return fmt.Errorf("Error setting Log Directory: %+v", err)

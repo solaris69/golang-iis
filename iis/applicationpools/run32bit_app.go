@@ -39,7 +39,7 @@ tto-json
 func (c *AppPoolsClient) SetEnable32Bit(name string, value bool) error {
 	commands := fmt.Sprintf(`
 Import-Module WebAdministration
-set-ItemProperty "IIS:\AppPools\%q" enable32BitAppOnWin64  -Value true
+set-ItemProperty "IIS:\AppPools\%s" enable32BitAppOnWin64  -Value %s
   `, name, strconv.FormatBool(value))
 
 	_, stderr, err := c.Run(commands)
